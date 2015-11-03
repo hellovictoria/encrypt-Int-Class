@@ -1,10 +1,16 @@
-edit:main ecyInt.o safeopts1.o
+GXX=g++
+objects=ecyInt.o main.o main libsafeopts2.so
 
-safeopts1.o:safeopts1.cpp
-    g++ -c $< -o $@ -fPIC
-libsafeopts2.so:safeopts1.o
-    g++ $< -o $@ -shared -lcrypto
+main:main.o ecyInt.o
+	cd ./safeoptslib;make
+	$(GXX) -o $@ $< -lsafeopts2
+main.o:main.cpp
+	$(GXX) -c $< -o $@
 ecyInt.o:ecyInt.cpp
-    g++ -c $< -o $@
-main:ecyInt.o main.cpp
-    g++ $< -o $@ -L. libsafeopts2.so
+	$(GXX) -c $< -o $@
+
+.PHONY:clean
+clean:
+	cd ./safeoptslib;make clean
+	rm -rf $(objects)
+ 

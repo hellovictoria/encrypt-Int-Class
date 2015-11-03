@@ -3,7 +3,8 @@
 #include <cstring>
 #include <unistd.h>
 #include <fstream>
-#include "ecyInt.h"
+//#include "ecyInt.h"
+#include "ecyInt.cpp"
 #include "safeopts1.h"
 #include <stdio.h>
 
@@ -50,7 +51,7 @@ int main()
     cout <<"eid=eic-eia, eid= \n"<< eid << endl;
     cout <<"eie=eia-eib, eie= \n"<< eie << endl;
 
-    return 1;
+    return 0;
 }
 
 /*
